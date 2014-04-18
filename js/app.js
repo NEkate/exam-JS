@@ -53,6 +53,11 @@ define(['knockout', 'jquery', 'jquery-ui'], function (ko, $) {
 				var self = this;
 				self.newArray = ko.observableArray([]);
 
+				/*Так я думала пушить отфильтрованные данные в self.newArray, но так не работает
+				filteredProducts.forEach(function (productInList) {
+					self.newArray.push(new ProductOptions(productInList));
+				});*/
+
 				dataJson.forEach(function (productInList) {
 					self.newArray.push(new ProductOptions(productInList));
 				});

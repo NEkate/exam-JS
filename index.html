@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Фильтр товаров</title>
+    <link rel="stylesheet" href="js/lib/semantic/build/packaged/css/semantic.css"/>
+    <link rel="stylesheet" href="main.css"/>
+    <link rel="stylesheet" href="js/lib/jquery-ui/themes/base/jquery-ui.css"/>
+    <script data-main="js/config-and-run" src="js/lib/requirejs/require.js"></script>
+</head>
+<body>
+<form name="formWithSettings" id="left">
+
+    <label class="ui header">Бренды</label>
+
+    <p><input type="checkbox" name="GoPro" value="GoPro"/>GoPro</p>
+
+    <p><input type="checkbox" name="DOD" value="DOD">DOD</p>
+
+    <p><input type="checkbox" name="Aspiring" value="Aspiring">Aspiring</p>
+
+    <p><input type="checkbox" name="Globex" value="Globex">Globex</p>
+
+    <p><input type="checkbox" name="Falcon" value="Falcon">Falcon</p>
+
+
+    <h3 class="ui header">Цена</h3>
+
+    <p class="ui input"><input type="text" placeholder="от"/></p>
+
+    <p class="ui input"><input type="text" placeholder="до"/></p>
+
+    <p>
+        <label for="amount" class="ui header">Размер матрицы:</label>
+        <input type="text" id="amount">
+    </p>
+
+
+    <div id="slider-range"></div>
+
+    <div class="ui button hover get-settings">
+        Поиск
+    </div>
+
+
+</form>
+
+
+</body>
+</html>

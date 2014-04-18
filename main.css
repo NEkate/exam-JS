@@ -1,0 +1,7 @@
+#left{
+    width: 400px;
+    bottom: 0;
+    top: 0;
+    border-right: 1px solid #919191;
+    box-sizing: border-box;
+}

@@ -1,15 +1,18 @@
-
 #left-column{
     width: 400px;
     bottom: 0;
-    top: 0;
+    top: auto;
+    left: 0;
     border-right: 1px solid #919191;
     box-sizing: border-box;
     float: left;
 }
 
-#right-column{
+#product-list{
     float: left;
     margin-left: 20px;
-
+    right: 0;
+    bottom: 0;
+    top: auto;
 }
+

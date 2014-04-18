@@ -9,22 +9,22 @@
     <script data-main="js/config-and-run" src="js/lib/requirejs/require.js"></script>
 </head>
 <body>
-<form name="formWithSettings" id="left-column">
+<form name="form-with-settings" id="left-column">
 
     <label class="ui header">Бренды</label>
 
     <p>
-        <input type="checkbox" name="firm" value="GoPro" checked/>GoPro<br>
-        <input type="checkbox" name="firm" value="DOD">DOD<br>
-        <input type="checkbox" name="firm" value="Aspiring">Aspiring<br>
-        <input type="checkbox" name="firm" value="Globex">Globex<br>
-        <input type="checkbox" name="firm" value="Falcon">Falcon
+        <input type="checkbox" class="firm" name="firm"/>GoPro<br>
+        <input type="checkbox" class="firm" name="firm"/>DOD<br>
+        <input type="checkbox" class="firm" name="firm"/>Aspiring<br>
+        <input type="checkbox" class="firm" name="firm"/>Globex<br>
+        <input type="checkbox" class="firm" name="firm"/>Falcon
     </p>
 
     <h3 class="ui header">Цена</h3>
 
-    <input type="text" placeholder="от" name="min"/>
-    <input type="text" placeholder="до" name="max"/>
+    <input type="text" placeholder="от" id="min"/>
+    <input type="text" placeholder="до" id="max"/>
 
     <p>
         <label for="amount" class="ui header">Размер матрицы:</label>
@@ -38,7 +38,7 @@
 
 </form>
 
-<div id="right-column" data-bind="foreach: newArray">
+<div id="product-list" data-bind="foreach: newArray">
     <div class="ui segment">
     <h3 class="title" data-bind="text: title"></h3>
 
@@ -46,7 +46,7 @@
 
     <p class="brand" data-bind="text: 'фирма: ' + brand"></p>
 
-    <p class="resolution" data-bind="text: 'размер матрицы: ' + resolution">12312</p>
+    <p class="resolution" data-bind="text: 'размер матрицы: ' + resolution"></p>
 </div>
 </div>
 </body>

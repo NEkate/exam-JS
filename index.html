@@ -4,47 +4,50 @@
     <meta charset="utf-8">
     <title>Фильтр товаров</title>
     <link rel="stylesheet" href="js/lib/semantic/build/packaged/css/semantic.css"/>
-    <link rel="stylesheet" href="main.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet" href="js/lib/jquery-ui/themes/base/jquery-ui.css"/>
     <script data-main="js/config-and-run" src="js/lib/requirejs/require.js"></script>
 </head>
 <body>
-<form name="formWithSettings" id="left">
+<form name="formWithSettings" id="left-column">
 
     <label class="ui header">Бренды</label>
 
-    <p><input type="checkbox" name="GoPro" value="GoPro"/>GoPro</p>
-
-    <p><input type="checkbox" name="DOD" value="DOD">DOD</p>
-
-    <p><input type="checkbox" name="Aspiring" value="Aspiring">Aspiring</p>
-
-    <p><input type="checkbox" name="Globex" value="Globex">Globex</p>
-
-    <p><input type="checkbox" name="Falcon" value="Falcon">Falcon</p>
-
+    <p>
+        <input type="checkbox" name="firm" value="GoPro" checked/>GoPro<br>
+        <input type="checkbox" name="firm" value="DOD">DOD<br>
+        <input type="checkbox" name="firm" value="Aspiring">Aspiring<br>
+        <input type="checkbox" name="firm" value="Globex">Globex<br>
+        <input type="checkbox" name="firm" value="Falcon">Falcon
+    </p>
 
     <h3 class="ui header">Цена</h3>
 
-    <p class="ui input"><input type="text" placeholder="от"/></p>
-
-    <p class="ui input"><input type="text" placeholder="до"/></p>
+    <input type="text" placeholder="от" name="min"/>
+    <input type="text" placeholder="до" name="max"/>
 
     <p>
         <label for="amount" class="ui header">Размер матрицы:</label>
-        <input type="text" id="amount">
+        <input type="text" id="amount" name="range">
     </p>
 
 
     <div id="slider-range"></div>
-
-    <div class="ui button hover get-settings">
-        Поиск
-    </div>
+    <p><input type="submit" class="ui button hover get-settings"></p>
 
 
 </form>
 
+<div id="right-column" data-bind="foreach: newArray">
+    <div class="ui segment">
+    <h3 class="title" data-bind="text: title"></h3>
 
+    <p class="prise" data-bind="text: 'цена: ' + price"></p>
+
+    <p class="brand" data-bind="text: 'фирма: ' + brand"></p>
+
+    <p class="resolution" data-bind="text: 'размер матрицы: ' + resolution">12312</p>
+</div>
+</div>
 </body>
 </html>

@@ -1,18 +1,32 @@
-define(['jquery', 'jquery-ui'], function ($) {
+define(['knockout', 'jquery', 'jquery-ui'], function (ko, $) {
 
-
-
-
-	//region ============read_data============
-	$.get('./data/data.json',
+	$.getJSON('./data/data.json',
 		function (dataJson) {
-			this.data = dataJson;
-			return this.data;
+			//region ==========ProductsListVM=========
+			function ProductOptions(options) {
+				var self = this;
+				self.title = options.title;
+				self.price = options.price;
+				self.brand = options.brand;
+				self.resolution = options.resolution;
+			}
+
+			function ProductsListVM() {
+				var self = this;
+				self.newArray = ko.observableArray([]);
+
+				dataJson.forEach(function (productInList) {
+					self.newArray.push(new ProductOptions(productInList));
+				});
+			}
+
+			ko.applyBindings(new ProductsListVM());
+			//endregion
+
+
+			return dataJson;
 		}
 	);
-	//endregion
-
-	//region ============slider============
 	var sliderRange = $('#slider-range'),
 		amount = $("#amount");
 	sliderRange.slider({
@@ -26,5 +40,5 @@ define(['jquery', 'jquery-ui'], function ($) {
 	});
 	amount.val(sliderRange.slider('values', 0) +
 		" - " + sliderRange.slider('values', 1));
-	//endregion
+
 });

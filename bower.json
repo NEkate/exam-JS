@@ -1,0 +1,28 @@
+{
+  "name": "exam-JS",
+  "version": "0.0.0",
+  "homepage": "https://github.com/NEkate/exam-JS",
+  "authors": [
+    "Kate <katren4@yandex.ru>"
+  ],
+  "description": "write_something",
+  "main": "config-and-run.js",
+  "moduleType": [
+    "es6"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "js/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.11",
+    "jquery-ui": "~1.10.4",
+    "semantic": "~0.15.5",
+    "jquery": "~2.1.0"
+  }
+}

@@ -3,51 +3,96 @@
 <head>
     <meta charset="utf-8">
     <title>Фильтр товаров</title>
+    <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="js/lib/semantic/build/packaged/css/semantic.css"/>
     <link rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet" href="js/lib/jquery-ui/themes/base/jquery-ui.css"/>
     <script data-main="js/config-and-run" src="js/lib/requirejs/require.js"></script>
 </head>
 <body>
-<form name="form-with-settings" id="left-column">
+<div id="left-column">
+    <form id="form-with-settings" class="ui form">
+        <h3 class="ui header">Бренды</h3>
 
-    <label class="ui header">Бренды</label>
+        <div id="brands" class="grouped inline fields">
+            <div class="field">
+                <div class="ui checkbox">
+                    <input type="checkbox" name="firm[]" value="GoPro">
+                    <label>GoPro</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui checkbox">
+                    <input type="checkbox" name="firm[]" value="DOD">
+                    <label>DOD</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui checkbox">
+                    <input type="checkbox" name="firm[]" value="Aspiring">
+                    <label>Aspiring</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui checkbox">
+                    <input type="checkbox" name="firm[]" value="Globex">
+                    <label>Globex</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui checkbox">
+                    <input type="checkbox" name="firm[]" value="Falcon">
+                    <label>Falcon</label>
+                </div>
+            </div>
+        </div>
 
-    <p>
-        <input type="checkbox" class="firm " name="firm"/>GoPro<br>
-        <input type="checkbox" class="firm" name="firm"/>DOD<br>
-        <input type="checkbox" class="firm" name="firm"/>Aspiring<br>
-        <input type="checkbox" class="firm" name="firm"/>Globex<br>
-        <input type="checkbox" class="firm" name="firm"/>Falcon
-    </p>
+        <h3 class="ui header">Цена</h3>
 
-    <h3 class="ui header">Цена</h3>
+        <div class="two fields">
+            <div class="field">
+                <input placeholder="от" type="text" id="min">
+            </div>
+            <div class="field">
+                <input placeholder="до" type="text" id="max">
+            </div>
+        </div>
 
-    <input type="text" placeholder="от" id="min"/>
-    <input type="text" placeholder="до" id="max"/>
+        <p>
+            <label for="amount" class="ui header">Размер матрицы:</label>
+            <input type="text" id="amount" name="range">
+        </p>
 
-    <p>
-        <label for="amount" class="ui header">Размер матрицы:</label>
-        <input type="text" id="amount" name="range">
-    </p>
+        <div id="slider-range"></div>
 
+        <p><input type="submit" class="ui button hover get-settings"></p>
+    </form>
 
-    <div id="slider-range"></div>
-    <p><input type="submit" class="ui button hover get-settings"></p>
-
-
-</form>
+    <div class="ui segment">
+        <label class="ui header">Добавить новый товар</label>
+        <div class="ui input">
+            <p><input type="text" placeholder="Название товара"></p>
+            <p><input type="text" placeholder="Цена"></p>
+            <p><input type="text" placeholder="Фирма"></p>
+            <p><input type="text" placeholder="Размер матрицы"></p>
+        </div>
+        <p>
+            <div class="ui button hover "> добавить товар</div>
+        </p>
+    </div>
+</div>
 
 <div id="product-list" data-bind="foreach: newArray">
     <div class="ui segment">
-    <h3 class="title" data-bind="text: title"></h3>
+        <h3 class="title" data-bind="text: title"></h3>
 
-    <p class="prise" data-bind="text: 'цена: ' + price"></p>
+        <p class="prise" data-bind="text: 'цена: ' + price"></p>
 
-    <p class="brand" data-bind="text: 'фирма: ' + brand"></p>
+        <p class="brand" data-bind="text: 'фирма: ' + brand"></p>
 
-    <p class="resolution" data-bind="text: 'размер матрицы: ' + resolution"></p>
+        <p class="resolution" data-bind="text: 'размер матрицы: ' + resolution"></p>
+    </div>
 </div>
-</div>
+
 </body>
 </html>

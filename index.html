@@ -14,35 +14,11 @@
     <form id="form-with-settings" class="ui form">
         <h3 class="ui header">Бренды</h3>
 
-        <div id="brands" class="grouped inline fields">
+        <div id="brands" class="grouped inline fields" data-bind="foreach: brands">
             <div class="field">
-                <div class="ui checkbox">
-                    <input type="checkbox" name="firm[]" value="GoPro">
-                    <label>GoPro</label>
-                </div>
-            </div>
-            <div class="field">
-                <div class="ui checkbox">
-                    <input type="checkbox" name="firm[]" value="DOD">
-                    <label>DOD</label>
-                </div>
-            </div>
-            <div class="field">
-                <div class="ui checkbox">
-                    <input type="checkbox" name="firm[]" value="Aspiring">
-                    <label>Aspiring</label>
-                </div>
-            </div>
-            <div class="field">
-                <div class="ui checkbox">
-                    <input type="checkbox" name="firm[]" value="Globex">
-                    <label>Globex</label>
-                </div>
-            </div>
-            <div class="field">
-                <div class="ui checkbox">
-                    <input type="checkbox" name="firm[]" value="Falcon">
-                    <label>Falcon</label>
+                <div class="">
+                    <input type="checkbox" name="firm[]" data-bind="value: $data.name, checked: selected">
+                    <label data-bind="text: $data.name"></label>
                 </div>
             </div>
         </div>
@@ -82,7 +58,7 @@
     </div>
 </div>
 
-<div id="product-list" data-bind="foreach: newArray">
+<div id="product-list" data-bind="foreach: products">
     <div class="ui segment">
         <h3 class="title" data-bind="text: title"></h3>
 

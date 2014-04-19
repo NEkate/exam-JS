@@ -1,77 +1,57 @@
 define(['knockout', 'jquery', 'jquery-ui', 'semantic'], function (ko, $) {
 
-	$.getJSON('./data/data.json',
-		function (dataJson) {
+	//region ====productVM====
+	var productsView = ko.observableArray([]),
+		brandsList = [],
+		brandsView = ko.observableArray(brandsList);
 
-			var filteredProducts;
-			$('#form-with-settings').on('submit', function (event) {
-				event.preventDefault();
-				var resolutionsSelector = $('#amount'),
-					firmsHash = {},
-					prices = {
-						min: parseInt($("#min").val()),
-						max: parseInt($("#max").val())
-					},
-					resolutions = {
-						min: sliderRange.slider('values', 0),
-						max: sliderRange.slider('values', 1)
-					};
+	ko.applyBindings({
+		products: productsView,
+		brands: brandsView
+	});
+	//endregion
 
-				$('#brands input:checked').each(function(i, input){
-				    firmsHash[input.value] = true;
-				});
+	var fullProductsList = [];
 
-				filteredProducts = dataJson.filter(function (product) {
+	$('#form-with-settings').on('submit', function (event) {
+		event.preventDefault();
+		var resolutionsSelector = $('#amount'),
+			brandsHash = {},
+			prices = {
+				min: parseInt($("#min").val()),
+				max: parseInt($("#max").val())
+			},
+			resolutions = {
+				min: sliderRange.slider('values', 0),
+				max: sliderRange.slider('values', 1)
+			};
 
-					if (firmsHash.hasOwnProperty(product.brand)
-						&& product.price >= prices.min
-						&& product.price <= prices.max
-						&& product.resolution >= resolutions.min
-						&& product.resolution <= resolutions.max) {
-						return true;
-					}
-					return false;
+		brandsList.forEach(function (brand) {
+			if (brand.selected()) {
+				brandsHash[brand.name] = true;
+			}
+		});
 
-				});
-
-				productsView.newArray.removeAll();
-
-				filteredProducts.forEach(function(item){
-					productsView.newArray.push(item);
-				});
-			});
-
-			//region ====productVM====
-			function ProductOptions(options) {
-				var self = this;
-				self.title = options.title;
-				self.price = options.price;
-				self.brand = options.brand;
-				self.resolution = options.resolution;
+		var filteredProducts = fullProductsList.filter(function (product) {
+			if (brandsHash.hasOwnProperty(product.brand)
+				&& product.price >= prices.min
+				&& product.price <= prices.max
+				&& product.resolution >= resolutions.min
+				&& product.resolution <= resolutions.max
+				) {
+				return true;
 			}
 
-			function ProductsListVM() {
-				var self = this;
-				self.newArray = ko.observableArray([]);
+			return false;
+		});
 
-				/*Так я думала пушить отфильтрованные данные в self.newArray, но так не работает
-				filteredProducts.forEach(function (productInList) {
-					self.newArray.push(new ProductOptions(productInList));
-				});*/
+		productsView.removeAll();
 
-				dataJson.forEach(function (productInList) {
-					self.newArray.push(new ProductOptions(productInList));
-				});
-			}
+		filteredProducts.forEach(function (item) {
+			productsView.push(item);
+		});
+	});
 
-			var productsView = new ProductsListVM();
-
-			ko.applyBindings(productsView);
-			//endregion
-
-			return dataJson;
-		}
-	);
 	//region ====slider====
 	var sliderRange = $('#slider-range'),
 		amount = $("#amount");
@@ -89,9 +69,29 @@ define(['knockout', 'jquery', 'jquery-ui', 'semantic'], function (ko, $) {
 	amount.val(sliderRange.slider('values', 0) +
 		" - " + sliderRange.slider('values', 1));
 
-	$('.ui.checkbox').checkbox();
-
 	//endregion
 
+	$.getJSON('./data/data.json',
+		function (dataJson) {
 
+			var brandsHash = {};
+			dataJson.forEach(function (product) {
+				fullProductsList.push(product);
+				productsView.push(product);
+				brandsHash[product.brand] = true;
+			});
+
+			for (var brandName in brandsHash) {
+				if (!brandsHash.hasOwnProperty(brandName)) {
+					continue;
+				}
+
+				brandsView.push({
+					name: brandName,
+					selected: ko.observable(true)
+				});
+			}
+
+		}
+	);
 });
